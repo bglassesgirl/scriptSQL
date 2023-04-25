@@ -63,3 +63,39 @@ CREATE TABLE ALUNO(
     references ENDERECO(id_endereco)
     
 );
+
+USE ESCOLAIF;
+
+CREATE TABLE TELEFONE(
+    id_telefone int NOT NULL auto_increment primary key,
+    numeroTelefone varchar(45) NOT NULL,
+	id_professor int,
+    id_aluno int,
+    constraint fk_idprofessor_telefone foreign key(id_professor)
+    references PROFESSOR(id_professor),
+	constraint fk_idaluno_telefone foreign key(id_aluno)
+    references ALUNO(id_aluno)
+);
+
+CREATE TABLE DISCIPLINA_HAS_CURSO(
+   
+     id_disciplina int NOT NULL, 
+	 id_curso int NOT NULL, 
+     constraint fk_disciplina_disciplina_has_curso foreign key(id_disciplina)
+     references DISCIPLINA(id_disciplina),
+	 constraint fk_idcurso_disciplina_has_curso foreign key(id_curso)
+     references CURSO(id_curso),
+	 primary key(id_disciplina, id_curso)
+);
+
+CREATE TABLE NOTAS(
+	 notaAluno double NOT NULL,
+     id_aluno int NOT NULL,
+     id_disciplina int NOT NULL,
+	 constraint fk_aluno_notas foreign key(id_aluno)
+     references ALUNO(id_aluno),
+	 constraint fk_disciplina_notas foreign key(id_disciplina)
+     references DISCIPLINA(id_disciplina),
+     primary key(id_aluno, id_disciplina)
+     
+);
