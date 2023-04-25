@@ -51,7 +51,8 @@ CREATE TABLE ENDERECO(
 	uf_endereco varchar(45) NOT NULL,
     numero_endereco int NOT NULL
 );
-
+CREATE INDEX IDX_ID_ENDERECO ON ENDERECO(ID_ENDERECO);
+ 
 CREATE TABLE ALUNO(
 
     id_aluno int NOT NULL auto_increment primary key,
@@ -64,6 +65,8 @@ CREATE TABLE ALUNO(
     
 );
 
+ CREATE INDEX IDX_ID_ALUNO ON ALUNO(ID_ALUNO);
+ 
 USE ESCOLAIF;
 
 CREATE TABLE TELEFONE(
