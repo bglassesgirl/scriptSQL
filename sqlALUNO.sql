@@ -96,4 +96,32 @@ CREATE TABLE PROFESSOR(
    
    select * from telefone;
 
+     insert disciplina(NOME_DISCIPLINA, CARGA_DISCIPLINA, ID_PROFESSOR) values ("Banco de dados", "80h", 1);
+   insert disciplina(NOME_DISCIPLINA, CARGA_DISCIPLINA, ID_PROFESSOR) values ("Estrutura de dados", "80h", 1);
+   insert disciplina(NOME_DISCIPLINA, CARGA_DISCIPLINA, ID_PROFESSOR) values ("Sistemas Operacionais", "80h", 1);
+   
+   select * from disciplina;
+   
+   CREATE TABLE NOTAS(
+	 nota_aluno double NOT NULL,
+     id_aluno int NOT NULL,
+     id_disciplina int NOT NULL,
+	 constraint fk_aluno_notas foreign key(id_aluno)
+     references ALUNO(id_aluno),
+	 constraint fk_disciplina_notas foreign key(id_disciplina)
+     references DISCIPLINA(id_disciplina),
+     primary key(id_aluno, id_disciplina)
+);
+   insert notas(NOTA_ALUNO, ID_ALUNO, ID_DISCIPLINA) values ("10", 1, 1);
+    
+    INSERT INTO campus (NOME_CAMPUS,TIPO_CAMPUS)
+VALUES
+  ("Floresta Salvador","Principal"),
+  ("Floresta Salvador","Principal"),
+  ("Afonso Floresta","NúcleoAvançado"),
+  ("Floresta Salvador","Principal"),
+  ("Afonso Floresta","NúcleoAvançado");
+
+    select * from campus;
+   
 
