@@ -39,66 +39,61 @@ CREATE TABLE PROFESSOR(
     id_endereco int NOT NULL,
     constraint fk_idendereco_professor foreign key(id_endereco)
     references ENDERECO(id_endereco)
+  
+);
+
+   USE ESCOLAIF;
+   
+   insert into campus(NOME_CAMPUS, TIPO_CAMPUS) values ("Paulo Afonso", "Principal");
+   insert into campus(NOME_CAMPUS, TIPO_CAMPUS) values ("Água Branca", "Principal");
+   insert into campus(NOME_CAMPUS, TIPO_CAMPUS) values ("Petrolâncida", "Principal");
+   insert into campus(NOME_CAMPUS, TIPO_CAMPUS) values ("Maceió", "Principal");
     
-);
-
-CREATE TABLE ENDERECO(
-
-    id_endereco int NOT NULL auto_increment primary key,
-    rua_endereco varchar(45) NOT NULL,
-    bairro_endereco varchar(45) NOT NULL,
-	cidade_endereco varchar(45) NOT NULL,
-	uf_endereco varchar(45) NOT NULL,
-    numero_endereco int NOT NULL
-);
-CREATE INDEX IDX_ID_ENDERECO ON ENDERECO(ID_ENDERECO);
- 
-CREATE TABLE ALUNO(
-
-    id_aluno int NOT NULL auto_increment primary key,
-    nome_aluno varchar(45) NOT NULL,
-    cpf_aluno varchar(45) NOT NULL,
-    rg_aluno varchar(45) NOT NULL,
-	 id_endereco int NOT NULL,
-    constraint fk_idendereco_aluno foreign key(id_endereco)
-    references ENDERECO(id_endereco)
+   select * from campus;
+   
+   delete from campus where id_campus = 1; 
+   
+   insert into curso(NOME_CURSO, ID_CAMPUS) values ("Informática", 2);
+   insert into curso(NOME_CURSO, ID_CAMPUS) values ("Eletromecanica", 2);
+   insert into curso(NOME_CURSO, ID_CAMPUS) values ("Biocombustiveis", 2);
     
-);
-
- CREATE INDEX IDX_ID_ALUNO ON ALUNO(ID_ALUNO);
- 
-USE ESCOLAIF;
-
-CREATE TABLE TELEFONE(
+   select * from curso;
+   
+   insert into endereco(RUA_ENDERECO, BAIRRO_ENDERECO, CIDADE_ENDERECO, UF_ENDERECO,  NUMERO_ENDERECO) values ("Sao Bento", "centro", "água branca", "al", 2);
+   insert into endereco(RUA_ENDERECO, BAIRRO_ENDERECO, CIDADE_ENDERECO, UF_ENDERECO,  NUMERO_ENDERECO) values ("Serra do Sitio", "centro", "água branca", "al", 3);
+   insert into endereco(RUA_ENDERECO, BAIRRO_ENDERECO, CIDADE_ENDERECO, UF_ENDERECO,  NUMERO_ENDERECO) values ("Balneario", "centro", "Paulo Afonso", "al", 3);
+   insert into endereco(RUA_ENDERECO, BAIRRO_ENDERECO, CIDADE_ENDERECO, UF_ENDERECO,  NUMERO_ENDERECO) values ("rua do ifba", "chesf", "Paulo Afonso", "al", 4);
+   
+   select * from endereco;
+   
+   insert into professor(NOME_PROFESSOR, CPF_PROFESSOR, RG_PROFESSOR, ID_ENDERECO) values ("Igor", "1922919219","382328", 4);
+   insert into professor(NOME_PROFESSOR, CPF_PROFESSOR, RG_PROFESSOR, ID_ENDERECO) values ("Rita", "2922919219","482328", 4);
+   insert into professor(NOME_PROFESSOR, CPF_PROFESSOR, RG_PROFESSOR, ID_ENDERECO) values ("Marina", "3922919219","582328", 4);
+   
+   select * from professor;
+   
+   insert into aluno(NOME_ALUNO, CPF_ALUNO, RG_ALUNO, ID_ENDERECO) values ("Luana", "9922919219","3232", 2);
+   insert into aluno(NOME_ALUNO, CPF_ALUNO, RG_ALUNO, ID_ENDERECO) values ("Julia", "8922919219","4232", 2);
+   insert into aluno(NOME_ALUNO, CPF_ALUNO, RG_ALUNO, ID_ENDERECO) values ("Beatriz", "7922919219","5232", 2);
+   
+   select * from aluno;
+    
+    CREATE TABLE TELEFONE(
     id_telefone int NOT NULL auto_increment primary key,
-    numeroTelefone varchar(45) NOT NULL,
+    numero_telefone varchar(45) NOT NULL,
 	id_professor int,
     id_aluno int,
     constraint fk_idprofessor_telefone foreign key(id_professor)
     references PROFESSOR(id_professor),
 	constraint fk_idaluno_telefone foreign key(id_aluno)
     references ALUNO(id_aluno)
-);
-
-CREATE TABLE DISCIPLINA_HAS_CURSO(
+   );
    
-     id_disciplina int NOT NULL, 
-	 id_curso int NOT NULL, 
-     constraint fk_disciplina_disciplina_has_curso foreign key(id_disciplina)
-     references DISCIPLINA(id_disciplina),
-	 constraint fk_idcurso_disciplina_has_curso foreign key(id_curso)
-     references CURSO(id_curso),
-	 primary key(id_disciplina, id_curso)
-);
+   
+   insert into telefone(NUMERO_TELEFONE, ID_PROFESSOR, ID_ALUNO) values ("82828282", 1, 2);
+   insert into telefone(NUMERO_TELEFONE, ID_PROFESSOR, ID_ALUNO) values ("82828282", 3, 2);
+   insert into telefone(NUMERO_TELEFONE, ID_PROFESSOR, ID_ALUNO) values ("712828282", 2, 1);
+   
+   select * from telefone;
 
-CREATE TABLE NOTAS(
-	 notaAluno double NOT NULL,
-     id_aluno int NOT NULL,
-     id_disciplina int NOT NULL,
-	 constraint fk_aluno_notas foreign key(id_aluno)
-     references ALUNO(id_aluno),
-	 constraint fk_disciplina_notas foreign key(id_disciplina)
-     references DISCIPLINA(id_disciplina),
-     primary key(id_aluno, id_disciplina)
-     
-);
+
