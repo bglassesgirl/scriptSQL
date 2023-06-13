@@ -124,4 +124,9 @@ VALUES
 
     select * from campus;
    
+   USE ESCOLAIF;
+   
+   UPDATE campus SET tipo_campus ='Principal' WHERE id_campus = '7';
+   
+   select * from campus;
 
